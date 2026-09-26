@@ -4,83 +4,137 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Web Oficial de Álvaro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ds-page: #faf8f3;
+    --ds-ink: #26221c;
+    --ds-ink-2: #6f6759;
+    --ds-hairline: #e6e0d5;
+  }
+  html, body { margin: 0; min-height: 100%; }
   body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
-    background: linear-gradient(270deg, #ff6ec4, #7873f5, #4adede, #ffdd55, #ff6ec4);
-    background-size: 1000% 1000%;
-    animation: fondo 12s ease infinite;
+    background: var(--ds-page);
+    color: var(--ds-ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 970px; margin: 0 auto; padding: 96px 24px 64px; }
+  h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+  h1 { font-size: 40px; letter-spacing: -0.01em; margin: 0 0 20px; }
+  h2 { font-size: 24px; margin: 56px 0 20px; }
+  .fact { color: var(--ds-ink-2); font-size: 14px; margin: 0 0 20px; }
+  .intro { margin: 0 0 40px; max-width: 720px; }
+  .patito {
+    font-family: "Noto Color Emoji", sans-serif;
+    font-size: 56px;
     text-align: center;
-    padding: 20px;
+    animation: patito-gira 4s linear infinite;
+    margin: 8px 0;
+    line-height: 1.3;
   }
-  @keyframes fondo {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  h1 {
-    font-size: clamp(2rem, 8vw, 4.5rem);
-    color: #fff;
-    text-shadow: 3px 3px 0 #000;
-    animation: rebote 1.2s ease infinite alternate;
-  }
-  @keyframes rebote {
-    from { transform: translateY(0) rotate(-2deg); }
-    to { transform: translateY(-18px) rotate(2deg); }
-  }
-  .subtitulo { color: #fff; font-size: 1.2rem; margin: 14px 0 34px; text-shadow: 2px 2px 0 #000; }
-  #boton {
-    font-family: inherit;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 18px 42px;
-    border: 4px solid #000;
-    border-radius: 999px;
-    background: #ffdd55;
+  @keyframes patito-gira { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  p { margin: 0 0 20px; }
+  .file-button {
+    font: inherit;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    background: #fff;
+    color: var(--ds-ink);
+    border: 1px solid var(--ds-hairline);
+    border-radius: 6px;
+    padding: 10px 16px;
     cursor: pointer;
-    box-shadow: 0 8px 0 #000;
-    transition: transform .05s, box-shadow .05s;
+    margin: 0 0 20px;
   }
-  #boton:active { transform: translateY(8px); box-shadow: 0 0 0 #000; }
-  #contador { margin-top: 26px; color: #fff; font-size: 1.3rem; text-shadow: 2px 2px 0 #000; min-height: 2.4em; }
-  .patito { font-size: 3.4rem; animation: girar 3s linear infinite; display: inline-block; margin-top: 30px; }
-  @keyframes girar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  footer { position: fixed; bottom: 10px; color: rgba(255,255,255,.85); font-size: .85rem; text-shadow: 1px 1px 0 #000; }
+  .file-button:hover { border-color: #d4ccbd; }
+  .file-button:active { transform: translateY(1px); }
+  .facts { margin: 0 0 8px; }
+  .fact-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--ds-hairline);
+    font-size: 14px;
+  }
+  .fact-row .label { color: var(--ds-ink-2); }
+  .callout {
+    background: #fdf3e3;
+    border: 1px solid #f0ddbb;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 24px 0 8px;
+    font-size: 14px;
+  }
+  .callout .callout-title { font-weight: 600; margin: 0 0 4px; }
+  .callout p { margin: 0; color: var(--ds-ink-2); }
+  .closing { margin-top: 56px; color: var(--ds-ink-2); max-width: 720px; }
+  @media (max-width: 600px) {
+    .wrap { padding: 56px 20px 48px; }
+    h1 { font-size: 32px; }
+    .fact-row { grid-template-columns: 140px 1fr; }
+  }
 </style>
 </head>
 <body>
-  <h1>🎉 LA WEB OFICIAL DE ÁLVARO 🎉</h1>
-  <p class="subtitulo">Certificamos que Álvaro es, efectivamente, Álvaro.</p>
-  <button id="boton">NO PULSES ESTE BOTÓN</button>
-  <p id="contador"></p>
-  <div class="patito">🦆</div>
-  <footer>Hecha con tecnología de vanguardia y cero utilidad · 2026</footer>
+<div class="wrap">
+  <h1>La Web Oficial de Álvaro</h1>
+  <p class="fact">Certificado nº 001</p>
+  <p class="intro">Tras un riguroso proceso de verificación, esta web certifica que Álvaro es, efectivamente, Álvaro.</p>
+
+  <div class="patito" role="img" aria-label="Un pato girando">🦆</div>
+
+  <h2>Zona de alto riesgo</h2>
+  <p>Debajo hay un botón. No hace nada. De verdad.</p>
+  <button class="file-button" id="boton">NO PULSES ESTE BOTÓN</button>
+  <p id="mensaje">Nadie ha pulsado el botón todavía. Récord mundial de autocontrol.</p>
+  <div class="facts">
+    <div class="fact-row"><span class="label">Pulsaciones</span><span id="cuenta">0</span></div>
+    <div class="fact-row"><span class="label">Utilidad conseguida</span><span>Cero</span></div>
+  </div>
+  <div class="callout" id="callout" hidden>
+    <p class="callout-title">Nivel pato alcanzado</p>
+    <p>Diez pulsaciones. El pato está oficialmente impresionado.</p>
+  </div>
+
+  <h2>Datos verificados</h2>
+  <div class="facts">
+    <div class="fact-row"><span class="label">Nombre</span><span>Álvaro</span></div>
+    <div class="fact-row"><span class="label">Apellido</span><span>También de Álvaro</span></div>
+    <div class="fact-row"><span class="label">Utilidad de esta web</span><span>Ninguna, y con orgullo</span></div>
+    <div class="fact-row"><span class="label">Patos consultados</span><span>1 (girando)</span></div>
+  </div>
+
+  <p class="closing">Hecha con tecnología de vanguardia y cero utilidad. Web de prueba, se autodestruirá cuando Álvaro quiera.</p>
+</div>
 <script>
   const frases = [
-    "Te dije que no lo pulses.",
-    "¿A qué no hay huevos que lo pulsas otra vez?",
-    "Venga va, otra más.",
-    "Estás enganchado, ¿eh?",
-    "El pato te está juzgando.",
-    "Pulsaciones oficiales registradas ante notario.",
-    "Tu dedo tiene talento.",
-    "Ni la NASA tiene un botón así.",
-    "Vale, ya está bien... otra.",
-    "Has desbloqueado absolutamente nada. ¡Enhorabuena!"
+    'Te dije que no lo pulses.',
+    '¿A que lo vuelves a pulsar?',
+    'Venga, una más.',
+    'El pato te está juzgando.',
+    'Pulsación registrada ante notario.',
+    'Ni la NASA tiene un botón así.',
+    'Tu dedo tiene un talento increíble.',
+    'Has desbloqueado: absolutamente nada.',
+    'En serio, esto no hace nada.',
+    'Vale, tú ganas. Pulsa lo que quieras.',
   ];
-  let n = 0;
-  const boton = document.getElementById("boton");
-  const contador = document.getElementById("contador");
-  boton.addEventListener("click", () => {
-    n++;
-    contador.textContent = frases[(n - 1) % frases.length] + " (llevas " + n + ")";
-    boton.textContent = n % 5 === 0 ? "DE VERDAD, NO LO PULSES" : "NO PULSES ESTE BOTÓN";
+  let pulsaciones = 0;
+  const boton = document.getElementById('boton');
+  const mensaje = document.getElementById('mensaje');
+  const cuenta = document.getElementById('cuenta');
+  const callout = document.getElementById('callout');
+  boton.addEventListener('click', () => {
+    pulsaciones++;
+    mensaje.textContent = frases[(pulsaciones - 1) % frases.length];
+    cuenta.textContent = String(pulsaciones);
+    if (pulsaciones >= 10) callout.hidden = false;
   });
 </script>
 </body>
